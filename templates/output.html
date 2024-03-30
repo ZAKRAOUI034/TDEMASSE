@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .parameter {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .parameter p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .parameter p strong {
+            margin-right: 10px;
+        }
+
+        .plot {
+            text-align: center;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>paramètres optimisés</h2>
+        <div class="parameter">
+            <p><strong>a_AB:</strong> {{ a_AB }}</p>
+            <p><strong>a_BA:</strong> {{ a_BA }}</p>
+            <p><strong>D_AB calculé:</strong> {{ D_AB_opt }}</p>
+            <p><strong>Iterations:</strong> {{ iteration }}</p>
+            <p><strong>temps d'exécution:</strong> {{ execution_time }} seconds</p>
+        </div>
+        <div class="plot">
+            <h2>D_AB en fonction du fraction molaire Xa</h2>
+            <canvas id="plot_canvas" width="400" height="300"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Récupérer les données de la page
+        var Xa_values = {{ Xa_values | tojson | safe }};
+        var D_AB_values = {{ D_AB_values | tojson | safe }};
+
+        // Créer un tracé
+        var ctx = document.getElementById('plot_canvas').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Xa_values,
+                datasets: [{
+                    label: 'D_AB vs Xa',
+                    data: D_AB_values,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Xa'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'D_AB'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

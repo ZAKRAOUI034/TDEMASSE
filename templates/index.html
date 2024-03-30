@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .input-form {
+            text-align: center;
+        }
+
+        .input-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-form input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .input-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .input-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Entrer les données expérimentales</h2>
+        <form action="/submit" method="post" class="input-form">
+            <label for="D_AB_exp">D_AB expérimental (cm 2/s):</label><br>
+            <input type="text" id="D_AB_exp" name="D_AB_exp"><br>
+            <label for="T">Temperature (T):</label>
+            <input type="text" id="T" name="T"><br><br>
+            <label for="Xa">Fraction molaire Xa:</label><br>
+            <input type="text" id="Xa" name="Xa"><br>
+            <label for="r_a">Valeur de r_a:</label><br>
+            <input type="text" id="r_a" name="r_a"><br>
+            <label for="r_b">Valeur de r_b:</label><br>
+            <input type="text" id="r_b" name="r_b"><br>
+            <label for="q_a">Valeur de q_a:</label><br>
+            <input type="text" id="q_a" name="q_a"><br>
+            <label for="q_b">Valeur de q_b:</label><br>
+            <input type="text" id="q_b" name="q_b"><br>
+            <label for="D_AB0">Valeur de D_AB0 (cm^2/s):</label><br>
+            <input type="text" id="D_AB0" name="D_AB0"><br>
+            <label for="D_BA0">Valeur de D_BA0 (cm^2/s):</label><br>
+            <input type="text" id="D_BA0" name="D_BA0"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
